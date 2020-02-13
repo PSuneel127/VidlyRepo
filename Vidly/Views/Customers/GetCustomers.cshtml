@@ -1,0 +1,43 @@
+﻿@model Vidly.Models.CustomerMovieViewModel
+@{
+    ViewBag.Title = "GetCustomers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<style>
+    td{
+        border: 1px solid black;
+        padding: 5px;
+    }
+</style>*@
+
+<br />
+<br />
+@if (Model.Customers is null)
+{
+    <p>No one has rented this movie</p>
+
+}
+else
+{
+    <table class="table table-hover table-bordered">
+        <thead >
+            <tr>
+                <td>Customer Name</td>
+                <td>Customer ID</td>
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var customer in Model.Customers)
+            {
+                <tr>
+                    <td>@Html.ActionLink(customer.CustName, "CustomerDetails", "Customers", new { customer.CustId}, null)</td>
+                    @*<td>@customer.CustName</td>*@
+                    <td>@customer.CustId</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
